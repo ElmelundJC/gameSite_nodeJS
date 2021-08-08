@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SpinWheel</title>
+
+    <link type="text/css" rel="stylesheet" href="../index/index.css"/>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+    <script src="../frontpage/Winwheel.js"></script>
+  </head>
+  <body>
+    <section>
+      <header>
+        <a href="#" class="logo">Spin the wheel</a>
+        <ul>
+          <li><a href="#">The Game</a></li>
+          <li><a href="#">Leaderboard</a></li>
+          <li><a href="#">Rules</a></li>
+          <li><a href="#">Reach Out</a></li>
+        </ul>
+        <ul>
+          <a href="#" class="yourprofile">Your profile</a>
+          <a href="#" class="logout">Log out</a>
+        </ul>
+      </header>  
+    </section>
+
+<section>    
+<div class="container">
+  <div class="card">
+    <div class="content">
+      <h3>The Game</h3>
+      <p>
+        Take the wheel for a spin and get the highest score of all our members! The user with the highest score every month will be selected for a special price! So try out your luck today!
+      </p>
+      <a href="#">Start playing</a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="content">
+      <h3>Leaderboard</h3>
+      <p>
+        Check out the leaderboard, and see if your one of the top players!
+      </p>
+      <a href="#">Highscores</a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="content">
+      <h3>Rules</h3>
+      <p>
+        Every game has its set of rules, so of course you should read up upon these aswell!
+      </p>
+      <a href="#">Rules</a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="content">
+      <h3>Reach Out</h3>
+      <p>
+        Are you having troubles, running into a bug or simply just love the game? Let us know! We appriciate all the feedback we can get.
+      </p>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</div>
+</section>
+</div>
+<footer id="footer-id">
+    <p id="footer-about">Copyright</p>
+  </footer>
+</section>
+<script type="text/javascript" src="../global/vanilla-tilt.js"></script>
+<script>
+  VanillaTilt.init(document.querySelectorAll('.card'), {
+    max: 25,
+    speed: 400,
+    glare: true,
+    'max-glare': 1,
+  });
+
+  const footerAbout = document.getElementById('footer-about');
+
+  footerAbout.innerText =
+    '© Copyright ' +
+    new Date().getFullYear() +
+    ' Celmelund - All Rights Reserved';
+
+  console.log(new Date().getFullYear());
+</script>
+</body>
+</html>

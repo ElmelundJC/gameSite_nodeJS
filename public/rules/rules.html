@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rules</title>
+
+    <link type="text/css" rel="stylesheet" href="../rules/rules.css"/>
+
+  </head>
+  <body>
+    <section class="section-nav">
+      <header class="header-container">
+        <a href="#" class="logo">Spin the wheel</a>
+        <ul>
+          <li><a href="#">The Game</a></li>
+          <li><a href="#">Leaderboard</a></li>
+          <li><a href="#">Rules</a></li>
+          <li><a href="#">Reach Out</a></li>
+        </ul>
+        <ul>
+          <a href="#" class="login-btn">Login</a>
+          <a href="#" class="signup-btn">Sign up</a>
+        </ul>
+      </header>  
+    </section>
+    <section class="section-rules">
+      <div class="box">
+          <div class="container">
+            <div class="form">
+              <h2>Rules Of Engagement!</h2>
+              <p>1.   Spin the wheel!</p>
+              <p>2.   Get the highest score.</p>
+              <p>3.   By landing on the different targets in the wheel you will get the price added to your current score.</p>
+              <p>4.   Should you be so unlucky by landing on a NITTE your current score goes back to 0 and you will have to start over.</p>
+              <br>
+              <p>HAVE FUN AND ENJOY!</p>
+            </div>
+          </div>
+      </div>
+  </section>
+
+
+    <section>
+      <footer id="footer-id">
+      <p id="footer-about">Copyright</p>
+      </footer>
+    </section>
+    <script type="text/javascript" src="../global/vanilla-tilt.js"></script>
+  <script>
+    VanillaTilt.init(document.querySelectorAll('.box'), {
+    max: 25,
+    speed: 400,
+    glare: true,
+    'max-glare': 1,
+    });
+
+    const footerAbout = document.getElementById('footer-about');
+
+    footerAbout.innerText = '© Copyright ' + new Date().getFullYear() + ' Celmelund - All Rights Reserved';
+
+    console.log(new Date().getFullYear());
+  </script>
+</body>
+</html>

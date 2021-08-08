@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SpinWheel</title>
+
+    <link type="text/css" rel="stylesheet" href="../frontpage/frontpage.css"/>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+    <script src="../frontpage/Winwheel.js"></script>
+  </head>
+  <body>
+    <section>
+      <header>
+        <a href="#" class="logo">Spin the wheel</a>
+        <ul>
+          <li><a href="#">The Game</a></li>
+          <li><a href="#">Leaderboard</a></li>
+          <li><a href="#">Rules</a></li>
+          <li><a href="#">Reach Out</a></li>
+        </ul>
+        <ul>
+          <a href="#" class="login">Login</a>
+          <a href="#" class="signup">Sign up</a>
+        </ul>
+      </header>  
+    </section>
+
+  <div id="main-content">
+    <section>
+      <div class="canvas-container">
+        <!-- Opretter et canvas med størrelse-->
+        <canvas id="canvas" width="650" height="650">
+          Canvas supportes ikke af din browser, brug en anden.
+        </canvas>
+        <img class="arrow-pointer" src="../global/arrow-left.png" alt="arrow-pointer" />
+        <button id="spinBtn" class="spin_btn" onload="theWheel.startAnimation();">SPIN HJULET</button>
+      </div>
+    </section>
+  </div>
+
+  <section>
+    <div>
+      <footer id="footer-id">
+        <p id="footer-about">Copyright</p>
+      </footer>
+    </div>
+  </section>
+
+<script src="../frontpage/autowheel.js"></script>
+<script type="text/javascript" src="../global/vanilla-tilt.js"></script>
+<script>
+  VanillaTilt.init(document.querySelectorAll('.card'), {
+    max: 25,
+    speed: 400,
+    glare: true,
+    'max-glare': 1,
+  });
+
+  const footerAbout = document.getElementById('footer-about');
+
+  footerAbout.innerText =
+    '© Copyright ' +
+    new Date().getFullYear() +
+    ' Celmelund - All Rights Reserved';
+
+  console.log(new Date().getFullYear());
+</script>
+</body>
+</html>
