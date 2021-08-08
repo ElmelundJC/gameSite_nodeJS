@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+
+    <link rel="stylesheet" href="../leaderboard/leaderboard.css">
+</head>
+<body>
+    <section class="section-nav">
+        <header class="header-container">
+          <a href="#" class="logo">Spin the wheel</a>
+          <ul>
+            <li><a href="#">The Game</a></li>
+            <li><a href="#">Leaderboard</a></li>
+            <li><a href="#">Rules</a></li>
+            <li><a href="#">Reach Out</a></li>
+          </ul>
+          <ul>
+            <a href="#" class="profile-btn">Profile</a>
+            <a href="#" class="logout-btn">Log out</a>
+          </ul>
+        </header>  
+      </section>
+
+    <section class="section-leaderboard">
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="box">
+            <div class="square" style="--i:0;"></div>
+            <div class="square" style="--i:1;"></div>
+            <div class="square" style="--i:2;"></div>
+            <div class="square" style="--i:3;"></div>
+            <div class="square" style="--i:4;"></div>
+            <div class="container">
+                <div class="form">
+                    <h2>YOUR NAME!</h2>
+                    <form action="">
+                        <div class="inputBox">
+                            <input type="text" id="name" placeholder="Your name" required>
+                        </div>
+                        <div class="inputBox">
+                            <input type="password" id="password" placeholder="Current password" required>
+                        </div>
+                        <div class="inputBox">
+                            <input type="password" id="newPassword" placeholder="New password">
+                        </div>               
+                        <div class="inputBox">
+                            <input type="password" id="newPassword" placeholder="Confirm new password">
+                        </div>
+                        <div class="inputBox">
+                            <input type="submit" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-footer">
+        <div>
+          <footer id="footer-id">
+            <p id="footer-about">Copyright</p>
+          </footer>
+        </div>
+      </section>
+      <script>
+        const footerAbout = document.getElementById('footer-about');
+      
+        footerAbout.innerText =
+          '© Copyright ' +
+          new Date().getFullYear() +
+          ' Celmelund - All Rights Reserved';
+      
+        console.log(new Date().getFullYear());
+      </script>
+</body>
+</html>

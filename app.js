@@ -8,16 +8,16 @@ const { get } = require('http');
 // GLOBAL Middleware
 
 // Serving static files
-app.use(express.static('public'));
+app.use(express.static(`${__dirname}/public`));
 
 
-// SSR - serverside rendering
-// const nav = fs.readFileSync(__dirname + '/public/nav/nav.html', 'utf-8');
-// const footer = fs.readFileSync(__dirname + '/public/footer/footer.html','utf-8');
-
-// const indexpage = fs.readFileSync(__dirname + '/public/index/index.html','utf-8');
-
-// const frontpage = fs.readFileSync(__dirname + '/public/frontpage/frontpage.html','utf-8');
+const frontpage = fs.readFileSync(__dirname + '/public/frontpage/frontpage.html', 'utf-8');
+const loginpage = fs.readFileSync(__dirname + '/public/login/login.html', 'utf-8');
+const signuppage = fs.readFileSync(__dirname + '/public/signup/signup.html', 'utf-8');
+const indexpage = fs.readFileSync(__dirname + '/public/index/index.html', 'utf-8');
+const rulespage = fs.readFileSync(__dirname + '/public/rules/rules.html', 'utf-8');
+const contactpage = fs.readFileSync(__dirname + '/public/contact/contact.html', 'utf-8');
+const profilepage = fs.readFileSync(__dirname + '/public/userpage/userpage.html', 'utf-8');
 
 // // test middleware
 // app.use((req, res, next) => {
@@ -30,20 +30,37 @@ app.use(express.static('public'));
 // ROUTES
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/frontpage/frontpage.html', 'utf-8');
-});
-
-app.get('/index', (req, res) => {
-  res.sendFile(__dirname + '/public/index/index.html');
+  res.send(frontpage);
 });
 
 app.get('/login', (req, res) => {
-  res.sendFile(__dirname + '/public/login/login.html');
+  res.send(loginpage);
 });
 
 app.get('/signup', (req, res) => {
-  res.sendFile(__dirname + '/public/signup/signup.html');
+  res.send(signuppage);
 });
+
+app.post('signup', (req, res) => {
+});
+
+app.get('/index/:id', (req, res) => {
+  res.send(indexpage);
+});
+
+app.get('/rules', (req, res) => {
+  res.send(rulespage);
+});
+
+app.get('/contact', (req, res) => {
+  res.send(contactpage);
+});
+
+app.get('/profile', (req, res) => {
+  res.send()
+});
+
+app.use('/users', userRouter);
 
 // SERVER
 
