@@ -1,70 +1,123 @@
 const express = require('express');
+const morgan = require('morgan');
 const app = express();
 
+const gamesiteRouter = require('./routes/gamesiteRoutes');
+const userRouter = require('./routes/userRoutes');
 
-const fs = require('fs');
-const { get } = require('http');
 
 // GLOBAL Middleware
+
+app.use(morgan('dev'));
+
+app.use(express.json());
 
 // Serving static files
 app.use(express.static(`${__dirname}/public`));
 
+app.use((req, res, next) => {
+  req.requestTime = new Date().toString();
+  next();
+})
 
-const frontpage = fs.readFileSync(__dirname + '/public/frontpage/frontpage.html', 'utf-8');
-const loginpage = fs.readFileSync(__dirname + '/public/login/login.html', 'utf-8');
-const signuppage = fs.readFileSync(__dirname + '/public/signup/signup.html', 'utf-8');
-const indexpage = fs.readFileSync(__dirname + '/public/index/index.html', 'utf-8');
-const rulespage = fs.readFileSync(__dirname + '/public/rules/rules.html', 'utf-8');
-const contactpage = fs.readFileSync(__dirname + '/public/contact/contact.html', 'utf-8');
-const profilepage = fs.readFileSync(__dirname + '/public/userpage/userpage.html', 'utf-8');
+// const frontpage = fs.readFileSync(__dirname + '/public/frontpage/frontpage.html', 'utf-8');
+// const loginpage = fs.readFileSync(__dirname + '/public/login/login.html', 'utf-8');
+// const signuppage = fs.readFileSync(__dirname + '/public/signup/signup.html', 'utf-8');
+// const indexpage = fs.readFileSync(__dirname + '/public/index/index.html', 'utf-8');
+// const rulespage = fs.readFileSync(__dirname + '/public/rules/rules.html', 'utf-8');
+// const contactpage = fs.readFileSync(__dirname + '/public/contact/contact.html', 'utf-8');
+// const profilepage = fs.readFileSync(__dirname + '/public/userpage/userpage.html', 'utf-8');
 
-// // test middleware
-// app.use((req, res, next) => {
-//   req.requestTime = new Date().toString();
-//   //   console.log(req.headers);
+// test middleware
+app.use((req, res, next) => {
+  req.requestTime = new Date().toString();
+  //   console.log(req.headers);
 
-//   next();
-// });
+  next();
+});
+
+
+// const getAllUsers = (req, res) => {
+//   res.status(500).json({
+//     status: 'error',
+//     message: 'This route is not yet defined!',
+//   });
+// }
+
+// const createUser = (req, res) => {
+//   res.status(500).json({
+//     status: 'error',
+//     message: 'This route is not yet defined!',
+//   });
+// }
+
+// const getUser = (req, res) => {
+//   res.status(500).json({
+//     status: 'error',
+//     message: 'This route is not yet defined!',
+//   });
+// }
+
+// const updateUser = (req, res) => {
+//   res.status(500).json({
+//     status: 'error',
+//     message: 'This route is not yet defined!',
+//   });
+// }
+
+// const deleteUser = (req, res) => {
+//   res.status(500).json({
+//     status: 'error',
+//     message: 'This route is not yet defined!',
+//   });
+// }
+
 
 // ROUTES
 
-app.get('/', (req, res) => {
-  res.send(frontpage);
-});
+// const gamesiteRouter = express.Router();
 
-app.get('/login', (req, res) => {
-  res.send(loginpage);
-});
 
-app.get('/signup', (req, res) => {
-  res.send(signuppage);
-});
+// gamesiteRouter.get('/gamesite', (req, res) => {
+//   res.status(200).send(frontpage);
+// });
 
-app.post('signup', (req, res) => {
-});
+// gamesiteRouter.get('/gamesite/rules', (req, res) => {
+//   res.status(200).send(rulespage);
+// });
 
-app.get('/index/:id', (req, res) => {
-  res.send(indexpage);
-});
+// gamesiteRouter.get('/gamesite/contact', (req, res) => {
+//   res.status(200).send(contactpage);
+// });
 
-app.get('/rules', (req, res) => {
-  res.send(rulespage);
-});
+// gamesiteRouter.get('/gamesite/login', (req, res) => {
+//   res.status(200).send(loginpage);
+// });
 
-app.get('/contact', (req, res) => {
-  res.send(contactpage);
-});
+// gamesiteRouter.get('/gamesite/signup', (req, res) => {
+//   res.status(200).send(signuppage);
+// });
 
-app.get('/profile', (req, res) => {
-  res.send()
-});
+// gamesiteRouter.post('/gamesite/signup', (req, res) => {
+// });
 
-app.use('/users', userRouter);
+// for later implementation
+// app.get('/gamesite/user/index/:id', (req, res) => {
+//   res.send(indexpage);
+// });
+
+// app.get('/gamesite/user/profile/:id', (req, res) => {
+//   res.send()
+// });
+
+
+// Mounting Routers
+app.use('/gamesite', gamesiteRouter);
+app.use('/gamesite/users', userRouter);
 
 // SERVER
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8080;
 const server = app.listen(port, () => {
   console.log(`App is running on port ${port}`);
 });
