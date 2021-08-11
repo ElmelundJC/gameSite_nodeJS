@@ -1,6 +1,6 @@
 const express = require('express');
 // const userController = require('../controller/userController');
-// const authController = require('../controller/authController');
+const authController = require('../controllers/authController');
 
 const router = express.Router();
 
@@ -38,6 +38,8 @@ const getAllUsers = (req, res) => {
       message: 'This route is not yet defined!',
     });
   }
+
+router.post('/signup', authController.signup);
 
 router
   .route('/')
