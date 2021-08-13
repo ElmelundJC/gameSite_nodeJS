@@ -1,55 +1,27 @@
 const express = require('express');
-// const userController = require('../controller/userController');
-const authController = require('../controllers/authController');
+const userController = require('./../controllers/userController');
+const authController = require('./../controllers/authController');
 
 const router = express.Router();
 
-const getAllUsers = (req, res) => {
-    res.status(500).json({
-      status: 'error',
-      message: 'This route is not yet defined!',
-    });
-  }
-  
-  const createUser = (req, res) => {
-    res.status(500).json({
-      status: 'error',
-      message: 'This route is not yet defined!',
-    });
-  }
-  
-  const getUser = (req, res) => {
-    res.status(500).json({
-      status: 'error',
-      message: 'This route is not yet defined!',
-    });
-  }
-  
-  const updateUser = (req, res) => {
-    res.status(500).json({
-      status: 'error',
-      message: 'This route is not yet defined!',
-    });
-  }
-  
-  const deleteUser = (req, res) => {
-    res.status(500).json({
-      status: 'error',
-      message: 'This route is not yet defined!',
-    });
-  }
-
 router.post('/signup', authController.signup);
+router.post('/login', authController.login);
+router.post('/forgotPassword', authController.forgotPassword);
+router.patch('/resetPassword/:token', authController.resetPassword);
+
 
 router
   .route('/')
-  .get(getAllUsers)
-  .post(createUser);
+  .get(authController.protect, userController.getAllUsers)
+  .post(userController.createUser);
 
 router
   .route('/:id')
-  .get(getUser)
-  .patch(updateUser)
-  .delete(deleteUser);
+  .get(userController.getUser)
+  .patch(userController.updateUser)
+  .delete(
+    authController.protect, 
+    authController.restrictTo('user', 'admin'), 
+    userController.deleteUser);
 
 module.exports = router;
