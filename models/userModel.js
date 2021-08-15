@@ -40,8 +40,22 @@ const userSchema = new mongoose.Schema({
     passwordChangedAt: Date,
     passwordResetToken: String,
     passwordResetExpires: Date,
+    active: {
+        type: Boolean,
+        default: true,
+        select: false,
+    },
+    currentScore: {
+        type: Number,
+        default: 0,
+    },
+    maxScore: {
+        type: Number,
+        default: 0,
+    },
 });
 
+// Query Middleware
 // Mongoose middleware - between getting the data and saving the data
 userSchema.pre('save', async function (next) {
     // Kører kun funktionen hvis password er blevet modificeret
@@ -61,6 +75,13 @@ userSchema.pre('save', function(next) {
     if (!this.isModified('password') || this.isNew) return next();
 
     this.passwordChangedAt = Date.now() - 1000;
+    next();
+});
+
+// /^xxx/ reqular expression -> leder efter xxx ord hvorpå vi derved vil sortere alle værdier der ikke har en false værdi ved active.
+userSchema.pre(/^find/, function(next) {
+    // this point to the current query
+    this.find({ active: { $ne: false } });
     next();
 });
 

@@ -1,11 +1,25 @@
 const express = require('express');
+const mongoose = require('mongoose');
 require('dotenv').config();
 const morgan = require('morgan');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
-// const gamesiteRouter = require('./routes/gamesiteRoutes');
 const userRouter = require('./routes/userRoutes');
+const { isLoggedIn } = require('./controllers/authController');
+// const loginRouter = require('./routes/loginRoutes');
+
+process.on('uncaughtException', (err) => {
+  console.log('UNCAUGHT EXCEPTION! #### Shutting down...');
+  console.log(err.name, err.message);
+  process.exit(1);
+});
 
 const app = express();
 
@@ -16,24 +30,50 @@ const fs = require('fs');
 
 // GLOBAL Middleware
 
+// Set Security HTTP headers
+// app.use(helmet());
 
 
+// Development logging
 console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-app.use(express.json());
-app.use(bodyParser.json());
+app.use(cors());
+
+// Limit request from same API
+// const limiter = rateLimit({
+//   max: 100,
+//   windowMs: 60 * 60 * 1000,
+//   message: 'Too many requests from this IP, please try again in an hour', 
+// });
+
+// app.use('/api', limiter);
+
+
+// Body parser, reading data from body into req.body
+app.use(express.json({ limit: '10kb' }));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+// Data sanitization against NoSQL query injection -> filtrere $ tegn ud af query strengen
+// app.use(mongoSanitize()); 
+
+// Data sanitization against XSS -> fjerner html tegn tilegnet mod vores users.
+// app.use(xss());
 
 // Serving static files
 app.use(express.static(`${__dirname}/public`));
 
+// Test middleware
 app.use((req, res, next) => {
   req.requestTime = new Date().toString();
+  console.log(req.cookies);
   next();
 })
+
+
 
 
 
@@ -51,9 +91,11 @@ const profilepage = fs.readFileSync(__dirname + '/public/userpage/userpage.html'
 const leaderboard = fs.readFileSync(__dirname + '/public/leaderboard/leaderboard.html', 'utf-8');
 
 
-// app.get('/', (req, res) => {
-//   res.status(200).send(frontpage);
-// });
+app.get('/', (req, res) => {
+  res.status(200).send(loginpage);
+});
+
+
 
 // app.get('/leaderboard', (req, res) => {
 //     res.status(200).send(leaderboard);
@@ -78,16 +120,14 @@ const leaderboard = fs.readFileSync(__dirname + '/public/leaderboard/leaderboard
 // // app.post('/gamesite/signup', (req, res) => {
 // // });
 
-// app.get('/index', (req, res) => {
-//   res.status(200).send(indexpage);
-// });
+// app.use(authController.isLoggedIn);
 
-// Mounting Routers
-// app.use('/gamesite', gamesiteRouter);
+app.get('/index', isLoggedIn, (req, res) => {
+  res.status(200).send(indexpage);
+});
 
 
 // ROUTES
-
 app.use('/api/users', userRouter);
 
 // If the codes ends down here, basicly our other routes wasnt matched. therefor a handler for all bad requests. (routes that hasnt been defined) 
@@ -102,4 +142,33 @@ app.all('*', (req, res, next) => {
 
 app.use(globalErrorHandler);
 
-module.exports = app;
+const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
+
+mongoose.connect(DB, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+}).then(() => console.log('DB connection successful!'));
+// man kunne også handle forkert connection ved at chaine .then til connectionen efter og console.log en besked.. men i denne app gøres det globalt.
+
+
+
+// SERVER
+const port = process.env.PORT || 8080;
+const server = app.listen(port, (error) => {
+  if (error) {
+    console.log(error)
+  }
+  console.log(`App is running on port ${port}`);
+});
+
+process.on('unhandledRejection', (err) => {
+  console.log('UNHANDLER REJECTION! #### Shutting down...');
+  console.log(err.name, err.message);
+  // server.close() giver severen tid til at lukke ned inden at vi "Hardcloser" applikationen.
+  server.close(() => {
+    // process.exit(1 or 0); 0 = success, 1 = uncaught exception
+    process.exit(1);
+  });
+});

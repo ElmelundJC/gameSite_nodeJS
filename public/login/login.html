@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 
     <link rel="stylesheet" href="../login/login.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 </head>
 <body>
     <section class="section-nav">
@@ -38,18 +38,18 @@
             <div class="container">
                 <div class="form">
                     <h2>Login Form</h2>
-                    <form action="/gamesite/" method="GET">
+                    <form id="login-form">
                         <div class="inputBox">
-                            <input type="text" placeholder="Username">
+                            <input type="text" id="email" autocomplete="off" placeholder="Email">
                         </div>
                         <div class="inputBox">
-                            <input type="password" placeholder="Password">
+                            <input type="password" id="password" autocomplete="off" placeholder="Password">
                         </div>
                         <div class="inputBox">
                             <input type="submit" value="Login">
                         </div>
                         <p class="forget">Forgot Password ? <a href="#">Click Here</a></p>
-                        <p class="forget">Don't have an account ? <a href="/gamesite/signup">Sign up</a></p>
+                        <p class="forget">Don't have an account ? <a href="/signup">Sign up</a></p>
                     </form>
                 </div>
             </div>
@@ -62,7 +62,9 @@
           </footer>
         </div>
       </section>
-      <script>
+      <script src="./../js/login.js"></script>
+    
+      <!-- <script>
         const footerAbout = document.getElementById('footer-about');
       
         footerAbout.innerText =
@@ -71,6 +73,32 @@
           ' Celmelund - All Rights Reserved';
       
         console.log(new Date().getFullYear());
-      </script>
+
+
+
+        // const form = document.getElementById('login-form');
+        // form.addEventListener('submit', loginUser);
+
+        // async function loginUser(event) {
+        //   event.preventDefault();
+        //   const email = document.getElementById('email');
+        //   const password = document.getElementById('password');
+
+        //   const result = await fetch('/api/login', {
+            
+            
+        //     // method: 'POST',
+        //     // headers: {
+        //     //   'Content-Type': 'application/json',
+        //     // },
+        //     // body: JSON.stringify({
+        //     //   email,
+        //     //   password,
+        //     // })
+        //   }).then((res) => res.json())
+
+        //   console.log(result)
+        // };
+      </script> -->
 </body>
 </html>
