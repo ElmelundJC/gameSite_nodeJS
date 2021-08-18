@@ -76,7 +76,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
 
     // da user er et dokument fra vores DB og vi i userModel har defineret en instance method til at sammenligne passwords kan vi her bruge: 
-    if (!user || !(await user.correctPassword(password, user.password)))  {
+    if (!user || !(await user.correctPassword(password, user.password)))  {
         return next(new AppError('Incorrect email or password', 401));
 
     }
@@ -121,7 +121,7 @@ exports.login = catchAsync(async (req, res, next) => {
 // });
 
 exports.isLoggedIn = (req, res, next) => {
-    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    const token = req.body.token || req.query.token || req.headers['x-access-token'];
     console.log('Test123')
     if (!token) {
         return res.status(403).send('A token is required for authentication');

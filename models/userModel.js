@@ -1,7 +1,10 @@
 const crypto = require('crypto');
 const mongoose = require('mongoose');
-const validator = require('validator')
+const jwt = require('jsonwebtoken');
+const validator = require('validator');
 const bcrypt = require('bcryptjs');
+require('dotenv').config();
+
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -23,7 +26,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, 'Please provide a password'],
-        minlength: 8,
+        minlength: 6,
         select: false, // fjerner password fra output
     },
     passwordConfirm: {
@@ -53,6 +56,12 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: 0,
     },
+    tokens: [{
+        token: {
+            type: String,
+            required: true,
+        }
+    }],
 });
 
 // Query Middleware
@@ -120,6 +129,43 @@ userSchema.methods.createPasswordResetToken = function() {
     return resetToken;
 };
 
+// removing x from json string upon creating/ getting a user 
+userSchema.methods.toJSON = function () {
+    const user = this;
+    const userObject = user.toObject();
+
+    delete userObject.password;
+    delete userObject.tokens;
+
+    return userObject;
+}
+
+userSchema.methods.generateAuthToken = async function () {
+    // this === user 
+    const token = jwt.sign({ _id: this._id.toString() }, process.env.JWT_SECRET);
+
+    this.tokens = this.tokens.concat({ token });
+    await this.save();
+
+    return token;
+}
+
+
+userSchema.statics.findByCredentials = async (email, password) => {
+    const user = await User.findOne({email: email});
+
+    if (!user) {
+        throw new Error("Unable to login");
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if(!isMatch){
+        throw new Error("Unable to login - Password or username is wrong");
+    }
+
+    return user;
+};
 
 const User = mongoose.model('User', userSchema);
 

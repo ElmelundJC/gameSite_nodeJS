@@ -38,22 +38,23 @@
             <div class="container">
                 <div class="form">
                     <h2>Create your account!</h2>
-                    <form action="/index/users/:id" method="POST">
+                    <form action="/users/create" method="POST">
                         <div class="inputBox">
-                            <input type="text" placeholder="Your name">
+                            <input type="text" name="name" id="name" placeholder="Your name">
                         </div>
                         <div class="inputBox">
-                            <input type="text" placeholder="Email address">
+                            <input type="text" name="email" id="email" placeholder="Email address">
                         </div>
                         <div class="inputBox">
-                            <input type="password" placeholder="Password">
+                            <input type="password" name="password" id="password" placeholder="Password">
                         </div>               
                         <div class="inputBox">
-                            <input type="password" placeholder="Confirm password">
+                            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password">
                         </div>
                         <div class="inputBox">
                             <input type="submit" value="Sign up">
                         </div>
+                        <p class="forget">Already have an account? <a href="#">Click Here</a></p>
                     </form>
                 </div>
             </div>

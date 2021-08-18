@@ -4,7 +4,7 @@ const login = async (email, password) => {
     try {    
         const res = await axios({
         method: 'POST',
-        url: 'http://127.0.0.1:8080/api/users/login',
+        url: 'http://127.0.0.1:8080/',
         data: {
             email,
             password,
@@ -22,7 +22,7 @@ document.querySelector('#login-form').addEventListener('submit', e => {
     const email = document.querySelector('#email').value;
     const password = document.querySelector('#password').value;
     login(email, password);
+    
 
-    // res.redirect('/index');
 });
 
