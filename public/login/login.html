@@ -38,7 +38,7 @@
             <div class="container">
                 <div class="form">
                     <h2>Login Form</h2>
-                    <form id="login-form" action="/users/api/login">
+                    <form id="loginForm">
                         <div class="inputBox">
                             <input type="text" name="email" id="email" autocomplete="off" placeholder="Email">
                         </div>
@@ -46,7 +46,7 @@
                             <input type="password" name="password" id="password" autocomplete="off" placeholder="Password">
                         </div>
                         <div class="inputBox">
-                            <input type="submit" value="Login">
+                            <input type="submit" id="loginBtn" value="Login">
                         </div>
                         <p class="forget">Forgot Password ? <a href="#">Click Here</a></p>
                         <p class="forget">Don't have an account ? <a href="/signup">Sign up</a></p>
@@ -62,6 +62,48 @@
           </footer>
         </div>
       </section>
+
       
+      <script>
+        document.querySelector('#loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+ 
+        const signupBtn = document.querySelector('#loginBtn');
+        const email = document.querySelector('input[name="email"]');
+        const password = document.querySelector('input[name="password"]');
+   
+        const result = await fetch('/api/users/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: email.value,
+              password: password.value,
+            })
+          })
+          .then(res => {
+            return res.json()
+          })
+          .then(data => {
+            console.log(data)
+            if (data.status === 'success') {
+              window.location.href = '/indexpage'
+            } else {
+              window.location.href = '/login'
+            }
+          })
+          .catch(error => console.log(error));
+      });
+
+        const footerAbout = document.getElementById('footer-about');
+      
+        footerAbout.innerText =
+          '© Copyright ' +
+          new Date().getFullYear() +
+          ' Celmelund - All Rights Reserved';
+      
+        console.log(new Date().getFullYear());
+      </script>
 </body>
 </html>

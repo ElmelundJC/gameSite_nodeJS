@@ -13,10 +13,6 @@
         <header class="header-container">
           <a href="#" class="logo">Spin the wheel</a>
           <ul>
-            <li><a href="#">The Game</a></li>
-            <li><a href="/gamesite/leaderboard">Leaderboard</a></li>
-            <li><a href="/gamesite/rules">Rules</a></li>
-            <li><a href="/gamesite/contact">Reach Out</a></li>
           </ul>
           <ul>
             <a href="/gamesite/login" class="login-btn">Login</a>
@@ -38,12 +34,12 @@
             <div class="container">
                 <div class="form">
                     <h2>Create your account!</h2>
-                    <form>
+                    <form id="signUpForm">
                         <div class="inputBox">
-                            <input type="text" name="name" id="name" placeholder="Your name">
+                            <input type="text" name="name" id="name" autocomplete="off" placeholder="Your name">
                         </div>
                         <div class="inputBox">
-                            <input type="text" name="email" id="email" placeholder="Email address">
+                            <input type="text" name="email" id="email" autocomplete="off" placeholder="Email address">
                         </div>
                         <div class="inputBox">
                             <input type="password" name="password" id="password" placeholder="Password">
@@ -68,53 +64,36 @@
         </div>
       </section>
       <script>
+        document.querySelector('#signUpForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+ 
         const signupBtn = document.querySelector('#signupBtn');
         const name = document.querySelector('input[name="name"]');
         const email = document.querySelector('input[name="email"]');
         const password = document.querySelector('input[name="password"]');
         const confirmPassword = document.querySelector('input[name="confirmPassword"]');
-        // const endpoint = '/users/api/signup';
-
-        // signupBtn.addEventListener('click', () => {
-        //   const data = {
-        //     name: name.value,
-        //     email: email.value,
-        //     password: password.value,
-        //     passwordConfirm: confirmPassword.value,
-        //   }
-
-        //   fetch(endpoint, {
-        //     method: 'post',
-        //     body: JSON.stringify(data),
-        //     headers: {
-        //       'Content-Type': 'application/json',
-        //     },
-
-        //   }).then(res => res.json()).then(data => { console.log(data) }).then(window.location.href = '/index');
-        // });
-        
-      
-
-        const signUser = async function () { fetch('/signup', {
-          method: 'post',
-          header: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            name: name,
-            email: email,
-            password: password,
-            passwordConfirm: confirmPassword,
+   
+        const result = await fetch('/api/users/signup', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: name.value,
+              email: email.value,
+              password: password.value,
+              passwordConfirm: confirmPassword.value,
+            })
           })
-        })
-        .then(res => {
-          return res.json()
-        })
-        .then(data => console.log(data))
-        .catch(error => console.log(error))
-      }
-       
-      signUser();
+          .then(res => {
+            return res.json()
+          })
+          .then(data => {
+            console.log(data)
+            window.location.href = '/indexpage'
+          })
+          .catch(error => console.log(error));
+      });
 
         const footerAbout = document.getElementById('footer-about');
       

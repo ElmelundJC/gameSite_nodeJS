@@ -91,50 +91,6 @@ exports.login = catchAsync(async (req, res, next) => {
 
 });
 
-// no errors on these pages
-// exports.isLoggedIn = catchAsync(async (req, res, next) => {
-//     if (req.cookies.jwt) {
-//         // verificere token
-//         const decoded = await promisify(jwt.verify)(req.cookie.jwt, process.env.JWT_SECRET);
-//         // console.log(decoded);
-
-//         // 3) Check if user still exists
-//         const currentUser = await User.findById(decoded.id);
-
-//         if (!currentUser) {
-//             return next();
-//         }
-//         // 4) Check if user changed password after the token was issued
-//         if(currentUser.changedPasswordAfter(decoded.iat)) {
-//             return next();
-//         }
-
-//         // Der er en bruger som er logged ind!
-//         const token = req.cookie.jwt;
-        
-//         // req.user = currentUser;
-        
-//         next();
-//     }
-//     // hvis ingen cookie, er der ikke logget nogen ind.
-//     next();
-// });
-
-// exports.isLoggedIn = (req, res, next) => {
-//     const token = req.body.token || req.query.token || req.headers['x-access-token'];
-//     console.log('Test123')
-//     if (!token) {
-//         return res.status(403).send('A token is required for authentication');
-//     }
-//     try {
-//         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-//         req.user = decoded;
-//     } catch (error) {
-//         return res.status(401).send('Invalid Token');
-//     }
-//     return next();
-// }
-
 // protects the routes/endpoints for at klienten ikke kan tilgå før de er logget ind
 exports.protect = catchAsync(async (req, res, next) => {
     // 1) Get token and check if its there

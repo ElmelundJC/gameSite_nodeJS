@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const userRouter = require('./routes/userRoutes');
-const { protect } = require('./controllers/authController');
+const { protect, signup } = require('./controllers/authController');
 // const loginRouter = require('./routes/loginRoutes');
 
 process.on('uncaughtException', (err) => {
@@ -83,8 +83,6 @@ app.get('/signup', (req, res) => {
   res.status(200).send(signuppage);
 });
 
-// Prøv post method på signup endpoint. 
-
 app.get('/indexpage', protect, (req, res) => {
   res.status(200).send(indexpage);
 });
@@ -116,14 +114,15 @@ app.get('/profile', protect, (req, res) => {
 app.use('/api/users', userRouter);
 
 // If the codes ends down here, basicly our other routes wasnt matched. therefor a handler for all bad requests. (routes that hasnt been defined) 
-// app.all('*', (req, res, next) => {
 
-//   // const err = new Error(`Can't find ${req.originalUrl} on this server!`);
-//   // err.status = 'fail!';
-//   // err.statusCode = 404;
+app.all('*', (req, res, next) => {
 
-//   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404) );
-// })
+  // const err = new Error(`Can't find ${req.originalUrl} on this server!`);
+  // err.status = 'fail!';
+  // err.statusCode = 404;
+
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404) );
+})
 
 app.use(globalErrorHandler);
 
