@@ -120,20 +120,20 @@ exports.login = catchAsync(async (req, res, next) => {
 //     next();
 // });
 
-exports.isLoggedIn = (req, res, next) => {
-    const token = req.body.token || req.query.token || req.headers['x-access-token'];
-    console.log('Test123')
-    if (!token) {
-        return res.status(403).send('A token is required for authentication');
-    }
-    try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decoded;
-    } catch (error) {
-        return res.status(401).send('Invalid Token');
-    }
-    return next();
-}
+// exports.isLoggedIn = (req, res, next) => {
+//     const token = req.body.token || req.query.token || req.headers['x-access-token'];
+//     console.log('Test123')
+//     if (!token) {
+//         return res.status(403).send('A token is required for authentication');
+//     }
+//     try {
+//         const decoded = jwt.verify(token, process.env.JWT_SECRET);
+//         req.user = decoded;
+//     } catch (error) {
+//         return res.status(401).send('Invalid Token');
+//     }
+//     return next();
+// }
 
 // protects the routes/endpoints for at klienten ikke kan tilgå før de er logget ind
 exports.protect = catchAsync(async (req, res, next) => {

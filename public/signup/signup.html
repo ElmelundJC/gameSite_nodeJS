@@ -38,7 +38,7 @@
             <div class="container">
                 <div class="form">
                     <h2>Create your account!</h2>
-                    <form action="/users/create" method="POST">
+                    <form>
                         <div class="inputBox">
                             <input type="text" name="name" id="name" placeholder="Your name">
                         </div>
@@ -52,7 +52,7 @@
                             <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password">
                         </div>
                         <div class="inputBox">
-                            <input type="submit" value="Sign up">
+                            <input type="submit" id="signupBtn" value="Sign up">
                         </div>
                         <p class="forget">Already have an account? <a href="#">Click Here</a></p>
                     </form>
@@ -68,6 +68,54 @@
         </div>
       </section>
       <script>
+        const signupBtn = document.querySelector('#signupBtn');
+        const name = document.querySelector('input[name="name"]');
+        const email = document.querySelector('input[name="email"]');
+        const password = document.querySelector('input[name="password"]');
+        const confirmPassword = document.querySelector('input[name="confirmPassword"]');
+        // const endpoint = '/users/api/signup';
+
+        // signupBtn.addEventListener('click', () => {
+        //   const data = {
+        //     name: name.value,
+        //     email: email.value,
+        //     password: password.value,
+        //     passwordConfirm: confirmPassword.value,
+        //   }
+
+        //   fetch(endpoint, {
+        //     method: 'post',
+        //     body: JSON.stringify(data),
+        //     headers: {
+        //       'Content-Type': 'application/json',
+        //     },
+
+        //   }).then(res => res.json()).then(data => { console.log(data) }).then(window.location.href = '/index');
+        // });
+        
+      
+
+        const signUser = async function () { fetch('/signup', {
+          method: 'post',
+          header: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            password: password,
+            passwordConfirm: confirmPassword,
+          })
+        })
+        .then(res => {
+          return res.json()
+        })
+        .then(data => console.log(data))
+        .catch(error => console.log(error))
+      }
+       
+      signUser();
+
         const footerAbout = document.getElementById('footer-about');
       
         footerAbout.innerText =

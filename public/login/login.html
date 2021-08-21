@@ -38,7 +38,7 @@
             <div class="container">
                 <div class="form">
                     <h2>Login Form</h2>
-                    <form id="login-form" action="/users/login">
+                    <form id="login-form" action="/users/api/login">
                         <div class="inputBox">
                             <input type="text" name="email" id="email" autocomplete="off" placeholder="Email">
                         </div>
@@ -62,43 +62,6 @@
           </footer>
         </div>
       </section>
-      <script src="./../js/login.js"></script>
-    
-      <!-- <script>
-        const footerAbout = document.getElementById('footer-about');
       
-        footerAbout.innerText =
-          '© Copyright ' +
-          new Date().getFullYear() +
-          ' Celmelund - All Rights Reserved';
-      
-        console.log(new Date().getFullYear());
-
-
-
-        // const form = document.getElementById('login-form');
-        // form.addEventListener('submit', loginUser);
-
-        // async function loginUser(event) {
-        //   event.preventDefault();
-        //   const email = document.getElementById('email');
-        //   const password = document.getElementById('password');
-
-        //   const result = await fetch('/api/login', {
-            
-            
-        //     // method: 'POST',
-        //     // headers: {
-        //     //   'Content-Type': 'application/json',
-        //     // },
-        //     // body: JSON.stringify({
-        //     //   email,
-        //     //   password,
-        //     // })
-        //   }).then((res) => res.json())
-
-        //   console.log(result)
-        // };
-      </script> -->
 </body>
 </html>
