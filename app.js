@@ -4,12 +4,13 @@ require('dotenv').config();
 const morgan = require('morgan');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const http = require('http');
+const socketio = require('socket.io');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const userRouter = require('./routes/userRoutes');
-const { protect, signup } = require('./controllers/authController');
-// const loginRouter = require('./routes/loginRoutes');
+const { protect } = require('./controllers/authController');
 
 process.on('uncaughtException', (err) => {
   console.log('UNCAUGHT EXCEPTION! #### Shutting down...');
@@ -18,6 +19,8 @@ process.on('uncaughtException', (err) => {
 });
 
 const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
 
 const bodyParser = require('body-parser');
 const fs = require('fs');
@@ -50,16 +53,36 @@ app.use((req, res, next) => {
   req.requestTime = new Date().toString();
   console.log(req.cookies);
   next();
-})
+});
 
+// ##########
+// Run when client connects
+io.on('connection', socket => {
 
+  // Welcome current user
+  socket.emit('message', 'Welcome to The GameChat!');
 
+  // Broadcast when a user connects
+  socket.broadcast.emit('message', 'A user has joined the chat');
+
+  // Runs when client disconnects
+  socket.on('disconnect', () => {
+    io.emit('message', 'A user has left the chat');
+  });
+
+  // Listen for chatMessage
+  socket.on('chatMessage', (msg) => {
+    io.emit('message', msg);
+  });
+});
+// #############
 
 
 // Static served HTML Routes
 const nav = fs.readFileSync(__dirname + '/public/nav/nav.html', 'utf-8');
 const maincontent = fs.readFileSync(__dirname + '/public/maincontent/maincontent.html', 'utf-8');
 const footer = fs.readFileSync(__dirname + '/public/footer/footer.html', 'utf-8');
+
 const frontpage = fs.readFileSync(__dirname + '/public/frontpage/frontpage.html', 'utf-8');
 const loginpage = fs.readFileSync(__dirname + '/public/login/login.html', 'utf-8');
 const signuppage = fs.readFileSync(__dirname + '/public/signup/signup.html', 'utf-8');
@@ -140,7 +163,7 @@ mongoose.connect(DB, {
 
 // SERVER
 const port = process.env.PORT || 8080;
-const server = app.listen(port, (error) => {
+server.listen(port, (error) => {
   if (error) {
     console.log(error)
   }

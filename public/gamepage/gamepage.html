@@ -12,7 +12,7 @@
     <script src="../global/Winwheel.js"></script>
   </head>
   <body>
-    <section>
+
       <header>
         <a href="#" class="logo">Spin the wheel</a>
         <ul>
@@ -22,46 +22,56 @@
           <a href="/signup" class="signup">Sign up</a>
         </ul>
       </header>  
-    </section>
+
 
   <div id="main-content">
-    <section>
-      <div class="canvas-container">
-        <!-- Opretter et canvas med størrelse-->
-        <canvas id="canvas" width="650" height="650">
-          Canvas supportes ikke af din browser, brug en anden.
-        </canvas>
-        <img class="arrow-pointer" src="../global/arrow-left.png" alt="arrow-pointer" />
-        <button id="spinBtn" class="spin_btn" onload="theWheel.startAnimation();">SPIN HJULET</button>
-      </div>
-    </section>
+    
+    
+    <div class="canvas-container">
+      <!-- Opretter et canvas med størrelse-->
+      <canvas id="canvas" width="650" height="650">
+        Canvas supportes ikke af din browser, brug en anden.
+      </canvas>
+      <img class="arrow-pointer" src="../global/arrow-left.png" alt="arrow-pointer" />
+      <button id="spinBtn" class="spin_btn" onload="theWheel.startAnimation();">SPIN HJULET</button>
+    </div>
+    
     <div id="scoreBoard">
-        <ul>
-            <li></li>
-        </ul>
+      <ul>
+          <li></li>
+      </ul>
     </div>
-    <div id="chatbox">
 
+    <div class="chatbox">
+      <div class="chat-messages">
+        <div class="message">
+
+        </div>
+      </div>
+      <div id="chat-form-container">
+          <form id="chat-form">
+            <input id="msg" type="text" placeholder="Enter Message" required autocomplete="off">
+            <button class="send-btn">Send</button>
+          </form>
+  
+        </div>
+      </div>
     </div>
+
   </div>
 
-  <section>
+
     <div>
       <footer id="footer-id">
         <p id="footer-about">Copyright</p>
       </footer>
     </div>
-  </section>
 
-<script src="../global/autowheel.js"></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../gamepage/chatServer.js"></script>
+    <script src="../gamepage/gamepage.js"></script>
 <script>
-  VanillaTilt.init(document.querySelectorAll('.card'), {
-    max: 25,
-    speed: 400,
-    glare: true,
-    'max-glare': 1,
-  });
-
   const footerAbout = document.getElementById('footer-about');
 
   footerAbout.innerText =
@@ -69,7 +79,7 @@
     new Date().getFullYear() +
     ' Celmelund - All Rights Reserved';
 
-  console.log(new Date().getFullYear());
+  // console.log(new Date().getFullYear());
 </script>
 </body>
 </html>

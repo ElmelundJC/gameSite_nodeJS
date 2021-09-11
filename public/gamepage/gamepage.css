@@ -20,7 +20,7 @@ section {
   padding: 50px;
 }
 
-.header-container {
+/* .header-container {
   position: relative;
   width: calc(100% - 100px);
   min-height: calc(100% - 280px);
@@ -32,7 +32,7 @@ section {
   justify-content: space-between;
   align-items: center;
   padding: 50px;
-}
+} */
 
 header {
   position: absolute;
@@ -111,7 +111,7 @@ header ul li a:hover {
 
 .signup:hover {
   background: #fff;
-    color: rgb(80, 69, 69);
+  color: rgb(80, 69, 69);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -120,6 +120,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  min-width: 100vh;
   background: #161623;
 }
 
@@ -145,6 +146,10 @@ body::after {
   clip-path: circle(30% at 20% 10%);
 }
 
+#main-content {
+  display: flex;
+}
+
 .container {
   position: relative;
   margin-top: 50px;
@@ -154,31 +159,6 @@ body::after {
   max-width: 1200px;
   flex-wrap: wrap;
   z-index: 1;
-}
-
-
-.canvas-container {
-  position: relative;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  top: 3em;
-  right: 50%;
-  z-index: 5;
-}
-
-#canvas {
-  z-index: 1;
-}
-
-.arrow-pointer {
-  position: absolute;
-  height: 55px;
-  width: 50px;
-  top: 18.59em;
-  left: 39.5em;
-  z-index: 996;
-  opacity: 0.9;
 }
 
 .spin_btn {
@@ -220,11 +200,96 @@ body::after {
   outline: none;
 }
 
+.canvas-container {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  top: 4em;
+  right: 50%;
+  z-index: 5;
+}
+
+#canvas {
+  z-index: 1;
+}
+
+.arrow-pointer {
+  position: absolute;
+  height: 55px;
+  width: 50px;
+  top: 18.59em;
+  left: 39.5em;
+  z-index: 996;
+  opacity: 0.9;
+}
+
+
+.chatbox {
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  width: 500px;
+  height: 500px;
+  
+
+  overflow-y: auto;
+  text-align: justify;
+  
+
+  border: 2px solid #fff;
+  border-radius: 2%;
+  top: 17em;
+  left: 60%;
+
+  /* background-color: #fff; */
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  
+
+  z-index: 1;
+
+}
+
+.message {
+    color: rgb(255, 255, 255);
+    margin: 8px 5px 8px 5px;
+    padding: 2px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+#chat-form-container {
+  bottom: 0;
+  right: 0;
+
+}
+
+#msg {
+  width: 440px;
+  height: 40px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.send-btn {
+  width: 50px;
+  height: 40px;
+  color: #000;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+}
+
+
 #footer-id {
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   bottom: 0;
   right: 36.5%;
   z-index: 999;

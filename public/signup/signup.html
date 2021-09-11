@@ -90,7 +90,11 @@
           })
           .then(data => {
             console.log(data)
-            window.location.href = '/indexpage'
+            if (data.status === 'success') {
+              window.location.href = '/indexpage'
+            } else {
+              window.location.href = '/login'
+            }
           })
           .catch(error => console.log(error));
       });
