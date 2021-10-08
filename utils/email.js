@@ -1,3 +1,6 @@
+require('dotenv').config();
+
+const router = require('express').Router();
 const nodemailer = require('nodemailer');
 
 const sendEmail = async (options) => {
@@ -14,7 +17,7 @@ const sendEmail = async (options) => {
     
     // define the email options
     const mailOptions = {
-        from: 'Christian Jacobsen <Culmelund@hotmail.com>',
+        from: 'Christian Jacobsen <christianelmelund@hotmail.com>',
         to: options.email,
         subject: options.subject,
         text: options.message,

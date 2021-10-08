@@ -110,7 +110,7 @@ app.get('/indexpage', protect, (req, res) => {
   res.status(200).send(indexpage);
 });
 
-app.get('/gamesite', (req, res) => {
+app.get('/gamesite', protect, (req, res) => {
   res.status(200).send(gamepage);
 });
 
@@ -126,9 +126,9 @@ app.get('/contact', protect, (req, res) => {
   res.status(200).send(contactpage);
 });
 
-app.get('/profile', protect, (req, res) => {
-  res.status(200).send(profilepage);
-});
+// app.get('/profile', protect, (req, res) => {
+//   res.status(200).send(profilepage);
+// });
 
 
 

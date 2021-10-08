@@ -91,6 +91,15 @@ exports.login = catchAsync(async (req, res, next) => {
 
 });
 
+exports.logout = (req, res) => {
+    res.cookie('jwt', 'loggedout', {
+        expires: new Date(Date.now() + 10 * 1000),
+        httpOnly: true,
+        maxAge: 1,
+    }),
+    res.status(200).json({ status: 'success' });    
+};
+
 // protects the routes/endpoints for at klienten ikke kan tilgå før de er logget ind
 exports.protect = catchAsync(async (req, res, next) => {
     // 1) Get token and check if its there
