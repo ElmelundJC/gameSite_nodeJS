@@ -29,6 +29,10 @@
 //       .catch(error => console.log(error));
 //   });
 
-document.querySelector('.login-btn').addEventListener('submit', async (e) => {
-    
-});
+let logoutBtn = document.querySelector('.logout-btn').addEventListener('click', logoutFnk);
+   
+   async function logoutFnk(){
+        await fetch('/api/users/logout', {
+            method: 'GET',
+        });
+    }; 

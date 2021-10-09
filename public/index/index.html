@@ -70,22 +70,26 @@
     <p id="footer-about">Copyright</p>
   </footer>
 </section>
+<script src="../global/logout.js"></script>
 <script type="text/javascript" src="../global/vanilla-tilt.js"></script>
 <script>
+
+
   VanillaTilt.init(document.querySelectorAll('.card'), {
     max: 25,
     speed: 400,
     glare: true,
     'max-glare': 1,
   });
+  
 
   const footerAbout = document.getElementById('footer-about');
-
+  
   footerAbout.innerText =
-    '© Copyright ' +
-    new Date().getFullYear() +
-    ' Celmelund - All Rights Reserved';
-
+  '© Copyright ' +
+  new Date().getFullYear() +
+  ' Celmelund - All Rights Reserved';
+  
   console.log(new Date().getFullYear());
 </script>
 </body>
