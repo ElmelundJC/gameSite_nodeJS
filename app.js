@@ -10,6 +10,7 @@ const socketio = require('socket.io');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const userRouter = require('./routes/userRoutes');
+const contactRouter = require("./routes/email");
 const { protect } = require('./controllers/authController');
 
 process.on('uncaughtException', (err) => {
@@ -54,6 +55,9 @@ app.use((req, res, next) => {
   console.log(req.cookies);
   next();
 });
+
+// ### Mail Middleware router ##
+app.use(contactRouter.router);
 
 // ##########
 // Run when client connects

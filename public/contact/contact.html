@@ -38,15 +38,15 @@
             <div class="container">
                 <div class="form">
                     <h2>Contact!</h2>
-                    <form action="/indexpage" method="GET">
+                    <form action="/api/contact" method="POST">
                         <div class="inputBox">
-                            <input type="text" id="name" placeholder="Your name" required>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
                         </div>
                         <div class="inputBox">
-                            <input type="text" id="email" placeholder="Email address" required>
+                            <input type="text" id="email" name="email" placeholder="Email address" required>
                         </div>
                         <div class="inputBox">
-                            <input type="subject" id="subject" placeholder="Subject" required>
+                            <input type="subject" id="subject" name="subject" placeholder="Subject" required>
                         </div>               
                         <div class="inputBox">
                             <textarea type="text" id="text" name="message" placeholder="write text here..." rows="8" cols="60"></textarea>
