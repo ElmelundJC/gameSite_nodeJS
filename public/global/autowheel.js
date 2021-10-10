@@ -5,7 +5,7 @@ let theWheel = new Winwheel({
     'numSegments'       :   8,          // antal segmenter i hjulet
     'lineWidth'         :   2,          // border/grænse tykkelse 
     'textOrientation'   : 'vertical',   // opstilling af teksten i segmenterne
-    'textAlignment'     : 'outer',      // texten går udefra og ind mod midten
+    'textAlignment'     : 'center',      // texten går udefra og ind mod midten
     'textFontFamily'    : 'Poppins',// FONT type
     'innerRadius'       : 40,           // Indre cirkel i hjulet
     'pointerAngle'      : 90,           // Her definere vi den vinkel hvor vores "pointer-arrow" er 
@@ -19,14 +19,14 @@ let theWheel = new Winwheel({
 //     },
     'segments'          :               // farve og tekst
     [
-        {'fillStyle'    :   '#fff457', 'text'   : 'GEVINST 1', 'textFontSize' : 30},
-        {'fillStyle'    :   '#69fa3d', 'text'   : 'GEVINST 2', 'textFontSize' : 30},
-        {'fillStyle'    :   '#6c7e85', 'text'   : 'NITTE',     'textFontSize' : 30},
-        {'fillStyle'    :   '#00ffea', 'text'   : 'GEVINST 4', 'textFontSize' : 30},
-        {'fillStyle'    :   '#003cff', 'text'   : 'GEVINST 5', 'textFontSize' : 30},
-        {'fillStyle'    :   '#c300ff', 'text'   : 'GEVINST 6', 'textFontSize' : 30},
-        {'fillStyle'    :   '#6c7e85', 'text'   : 'NITTE',     'textFontSize' : 30},
-        {'fillStyle'    :   '#ff5e00', 'text'   : 'GEVINST 8', 'textFontSize' : 30}
+        {'fillStyle'    :   '#fff457', 'text'   : '1', 'textFontSize' : 50},
+        {'fillStyle'    :   '#69fa3d', 'text'   : '2', 'textFontSize' : 50},
+        {'fillStyle'    :   '#6c7e85', 'text'   : '0', 'textFontSize' : 50},
+        {'fillStyle'    :   '#00ffea', 'text'   : '4', 'textFontSize' : 50},
+        {'fillStyle'    :   '#003cff', 'text'   : '5', 'textFontSize' : 50},
+        {'fillStyle'    :   '#c300ff', 'text'   : '6', 'textFontSize' : 50},
+        {'fillStyle'    :   '#ffa500', 'text'   : '7', 'textFontSize' : 50},
+        {'fillStyle'    :   '#ff5e00', 'text'   : '8', 'textFontSize' : 50}
     ],
     'animation'         : 
     {

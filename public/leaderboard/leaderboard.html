@@ -36,25 +36,27 @@
             <div class="square" style="--i:3;"></div>
             <div class="square" style="--i:4;"></div>
             <div class="container">
-                <div class="form">
-                    <h2>YOUR NAME!</h2>
-                    <form action="">
-                        <div class="inputBox">
-                            <input type="text" id="name" placeholder="Your name" required>
-                        </div>
-                        <div class="inputBox">
-                            <input type="password" id="password" placeholder="Current password" required>
-                        </div>
-                        <div class="inputBox">
-                            <input type="password" id="newPassword" placeholder="New password">
-                        </div>               
-                        <div class="inputBox">
-                            <input type="password" id="newPassword" placeholder="Confirm new password">
-                        </div>
-                        <div class="inputBox">
-                            <input type="submit" value="Submit">
-                        </div>
-                    </form>
+                <div class="table-leaderboard">
+                    <h2>Leaderboard</h2>
+                    <table class="content-table">
+                      <thead>
+                          <tr>
+                              <!-- <th></th> -->
+                              <th>Navn</th>
+                              <th>Score</th>
+                              <th>Max Score</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <!-- Statisk table data til testning og placering af vindertavlen. --> 
+                          <tr>
+                              <td class="table-name">Troels Sommersby</td>
+                              <td class="table-score">8</td>
+                              <td class="table-maxscore">58</td>
+                          </tr>
+                          
+                      </tbody>
+                  </table>
                 </div>
             </div>
         </div>

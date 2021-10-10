@@ -185,6 +185,7 @@ body::after {
   font-size: 1.1em;
   height: 85px;
   width: 85px;
+  z-index: 995;
 
   color: #ffffff;
   background: #174fa3;
@@ -195,38 +196,19 @@ body::after {
   outline: none;
 }
 
-.new_signup_btn {
-  position: absolute;
-  top: 1%;
-  left: 1%;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  font-size: 1.1em;
-  padding: 10px 16px;
-  margin: 10px 0;
-  width: 150px;
-
-  color: #ffffff;
-  background: #174fa3;
-  border: 2px solid #042961;
-  border-radius: 5px;
-
-  cursor: pointer;
-  outline: none;
-}
 
 .canvas-container {
   position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  top: 4em;
+  top: 3em;
   right: 50%;
   z-index: 5;
 }
 
 #canvas {
-  z-index: 1;
+  z-index: 5;
 }
 
 .arrow-pointer {
@@ -255,7 +237,7 @@ body::after {
 
   border: 2px solid #fff;
   border-radius: 2%;
-  top: 17em;
+  top: 16em;
   left: 60%;
 
   /* background-color: #fff; */
@@ -312,4 +294,72 @@ body::after {
 
 #footer-about {
   color: #fff;
+}
+
+.scoreBoard {
+  position: absolute;
+  top: 6em;
+  right: 3.8em;
+  height: 120px;
+  width: 500px;
+
+  text-align: center;
+  
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+
+  border: 2px solid #fff;
+  border-radius: 3%;
+
+  /* background-color: #fff; */
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.scoreBoard .content-table{
+  width: 100%;
+  border-top: 2px solid #fff;
+  font-size: 16px;
+}
+
+/* Table head */
+.scoreBoard .content-table thead {
+  
+}
+
+.scoreBoard .content-table thead tr {
+  width: 100%;
+}
+
+.scoreBoard .content-table thead tr th {
+  width: 50%;
+}
+
+.scoreBoard .content-table thead tr th:nth-child(1) {
+  border-bottom: 1px solid #fff;
+}
+
+.scoreBoard .content-table thead tr th:nth-child(2) {
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+}
+
+/* Table Body */
+
+.scoreBoard .content-table tbody tr {
+  width: 100%;
+}
+
+.scoreBoard .content-table tbody tr th {
+  width: 50%;
+}
+
+.scoreBoard .content-table tbody tr td:nth-child(1) {
+  padding-top: 15px;
+}
+
+.scoreBoard .content-table tbody tr td:nth-child(2) {
+  padding-top: 15px;
 }
