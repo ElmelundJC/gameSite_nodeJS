@@ -12,21 +12,25 @@ router.patch('/resetPassword/:token', authController.resetPassword);
 
 router.patch('/updateMyPassword', authController.protect, authController.updatePassword);
 
+
+router.get('/getMe', authController.protect, userController.getUser);
 router.patch('/updateMe', authController.protect, userController.updateMe);
 router.delete('/deleteMe', authController.protect, userController.deleteMe);
+
+router.get('/scoreboard', authController.protect, userController.getAllUsers);
 
 router
   .route('/')
   .get(userController.getAllUsers)
-  .post(userController.createUser);
+  // .post(userController.createUser);
 
 router
   .route('/:id')
   .get(userController.getUser)
-  .patch(userController.updateUser)
-  .delete(
-    authController.protect, 
-    authController.restrictTo('user', 'admin'), 
-    userController.deleteUser);
+  // .patch(userController.updateUser)
+  // .delete(
+  //   authController.protect, 
+  //   authController.restrictTo('user', 'admin'), 
+  //   userController.deleteUser);
 
 module.exports = router;

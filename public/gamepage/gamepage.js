@@ -41,7 +41,45 @@ let theWheel = new Winwheel({
 
 // ################################### HJULET #########################################################
 
-function winAnimation() {
+let tableName = document.querySelector('.table-name');
+let tableScore = document.querySelector('.table-score');
+
+let highestScore;
+
+
+async function getScoreboard() {
+    // let tableName = document.querySelector('.table-name');
+    // let tableScore = document.querySelector('.table-score');
+    
+    await fetch('/api/users/getMe', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then( response => {
+        return response.json();
+    })
+    .then( data => {
+        console.log(data.data.user.name);
+        console.log(data.data.user.currentScore);
+        
+        tableName.innerHTML = data.data.user.name;
+        tableScore.innerHTML = data.data.user.currentScore;
+
+        highestScore = data.data.user.maxScore;
+        console.log('Highest Score: ', highestScore);
+    })
+    .catch((error) => {
+        console.log('Error: ', error);
+    })
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    getScoreboard();
+});
+
+async function winAnimation() {
 
    // getIndicatedSegment() er funktionen der returnere pointeren til det segment vi definerede som vindervinklen på hjulet.
    let winningSegment = theWheel.getIndicatedSegment();
@@ -50,29 +88,46 @@ function winAnimation() {
     // 'Tag' det vindende segment
     let winningSegmentNumber = theWheel.getIndicatedSegmentNumber();
 
-    console.log(winningSegmentNumber);
+    let oldNumber = tableScore.innerText;
+    console.log(oldNumber);
+
+    if (winningSegmentNumber === 3) {
+        tableScore.innerText = 0;
+    } else {
+        tableScore.innerText = parseInt(oldNumber) + winningSegmentNumber;
+    }
+
+    let numberToDatabase = tableScore.innerText;
+    
+    if ( numberToDatabase > highestScore ) {
+        highestScore = numberToDatabase;
+    }
+
+
+    const data = {currentScore: numberToDatabase, maxScore: highestScore};
+
+    await fetch('/api/users/updateMe', {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then( response => response.json())
+    .then( response => {
+        console.log(response)
+        return response
+
+    })
+    .catch((error) => {
+        console.log('Error: ', error);
+    });
+
 
     
 
+    console.log(winningSegmentNumber); // tallet som står på hjulet.
 
-
-
-    // let tbodyRef = document.getElementById('table_body');
-
-    // let tRowChild = tbodyRef.children;
-    
-    
-    // for (let i = 0; i < tRowChild.length; i++) {
-    //     if(tRowChild[i].children[1].innerHTML === ""){ 
-    //         if(3 === winningSegmentNumber){
-    //             tRowChild[i].children[1].innerText = `NITTE`
-    //         } else if (7 === winningSegmentNumber){
-    //             tRowChild[i].children[1].innerText = `NITTE`
-    //         } else {
-    //             tRowChild[i].children[1].innerText = `${winningSegmentNumber}`
-    //         }
-    //     }; 
-    // };
 
     // Da animationen allerede har fundet sted er det nødvendigt at tillægge nye spins til hjulet.
     theWheel.animation.spins += 6;

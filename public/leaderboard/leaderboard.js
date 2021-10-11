@@ -3,7 +3,7 @@ async function getLeaderboard() {
     const tableBody = document.querySelector('.content-table tbody');
 
 
-    await fetch('/api/users', {
+    await fetch('/api/users/scoreboard', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
