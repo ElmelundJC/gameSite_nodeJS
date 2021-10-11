@@ -64,14 +64,14 @@ app.use(contactRouter.router);
 io.on('connection', socket => {
 
   // Welcome current user
-  socket.emit('message', 'Welcome to The GameChat!');
+  socket.emit('message', 'Velkommen til chatten. Skriv med alle online brugere!');
 
   // Broadcast when a user connects
-  socket.broadcast.emit('message', 'A user has joined the chat');
+  socket.broadcast.emit('message', 'En bruger har joinet chatten.');
 
   // Runs when client disconnects
   socket.on('disconnect', () => {
-    io.emit('message', 'A user has left the chat');
+    io.emit('message', 'En bruger har forladt chatten.');
   });
 
   // Listen for chatMessage
@@ -79,13 +79,13 @@ io.on('connection', socket => {
     io.emit('message', msg);
   });
 });
-// #############
+
 
 
 // Static served HTML Routes
-const nav = fs.readFileSync(__dirname + '/public/nav/nav.html', 'utf-8');
-const maincontent = fs.readFileSync(__dirname + '/public/maincontent/maincontent.html', 'utf-8');
-const footer = fs.readFileSync(__dirname + '/public/footer/footer.html', 'utf-8');
+// const nav = fs.readFileSync(__dirname + '/public/nav/nav.html', 'utf-8');
+// const maincontent = fs.readFileSync(__dirname + '/public/maincontent/maincontent.html', 'utf-8');
+// const footer = fs.readFileSync(__dirname + '/public/footer/footer.html', 'utf-8');
 
 const frontpage = fs.readFileSync(__dirname + '/public/frontpage/frontpage.html', 'utf-8');
 const loginpage = fs.readFileSync(__dirname + '/public/login/login.html', 'utf-8');
@@ -94,8 +94,8 @@ const indexpage = fs.readFileSync(__dirname + '/public/index/index.html', 'utf-8
 const gamepage = fs.readFileSync(__dirname + '/public/gamepage/gamepage.html', 'utf-8');
 const rulespage = fs.readFileSync(__dirname + '/public/rules/rules.html', 'utf-8');
 const contactpage = fs.readFileSync(__dirname + '/public/contact/contact.html', 'utf-8');
-const profilepage = fs.readFileSync(__dirname + '/public/userpage/userpage.html', 'utf-8');
 const leaderboard = fs.readFileSync(__dirname + '/public/leaderboard/leaderboard.html', 'utf-8');
+// const profilepage = fs.readFileSync(__dirname + '/public/userpage/userpage.html', 'utf-8');
 
 
 app.get('/', (req, res) => {

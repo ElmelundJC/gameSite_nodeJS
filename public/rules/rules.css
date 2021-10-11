@@ -308,11 +308,14 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     bottom: 0;
+    letter-spacing: 0;
     right: 36.5%;
     z-index: 999;
   }
   
   #footer-about {
+    letter-spacing: 0;
     color: #fff;
   }

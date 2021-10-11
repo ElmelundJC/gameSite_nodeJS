@@ -7,6 +7,7 @@
 body {
     min-height: 100vh;
     background: #161623;
+    overflow-y: hidden
 }
 
 * {
@@ -268,20 +269,16 @@ header ul li a:hover {
 
 
 #footer-id {
-    position: relative;
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     bottom: 0;
     right: 36.5%;
     z-index: 999;
   }
   
   #footer-about {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    left: 35%;
     color: #fff;
   }

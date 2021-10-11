@@ -7,6 +7,7 @@
 body {
     min-height: 100vh;
     background: #161623;
+    overflow-y: hidden
 }
 
 * {
@@ -266,7 +267,7 @@ header ul li a:hover {
 
 .form .inputBox {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .form .inputBox input {
@@ -294,7 +295,7 @@ header ul li a:hover {
     color: #666;
     max-width: 100%;
     cursor: pointer;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-weight: 600;
     font-size: 16px;
     border-radius: 5px;
@@ -307,35 +308,21 @@ header ul li a:hover {
     color: #666;
     max-width: 100px;
     cursor: pointer;
-    margin-bottom: 20px;
-    font-weight: 600;
-}
-
-.forget {
-    margin-top: 5px;
-    color: #fff;
-}
-
-.forget a {
-    color: #fff;
+    margin-bottom: 10px;
     font-weight: 600;
 }
 
 #footer-id {
-    position: relative;
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     bottom: 0;
     right: 36.5%;
     z-index: 999;
   }
   
   #footer-about {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    left: 35%;
     color: #fff;
   }
