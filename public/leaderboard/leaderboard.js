@@ -40,6 +40,9 @@ async function getLeaderboard() {
         }
 
     })
+    .catch((error) => {
+        console.log('Error: ', error);
+    })
 }
 
 document.addEventListener('DOMContentLoaded', function () {

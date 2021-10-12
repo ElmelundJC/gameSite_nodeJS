@@ -81,9 +81,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 async function winAnimation() {
 
-   // getIndicatedSegment() er funktionen der returnere pointeren til det segment vi definerede som vindervinklen på hjulet.
-   let winningSegment = theWheel.getIndicatedSegment();
-   console.log(winningSegment);
+//    getIndicatedSegment() er funktionen der returnere pointeren til det segment vi definerede som vindervinklen på hjulet.
+//    let winningSegment = theWheel.getIndicatedSegment();
+//    console.log(winningSegment);
    
     // 'Tag' det vindende segment
     let winningSegmentNumber = theWheel.getIndicatedSegmentNumber();
@@ -115,7 +115,6 @@ async function winAnimation() {
     })
     .then( response => response.json())
     .then( response => {
-        console.log(response)
         return response
 
     })
@@ -123,16 +122,9 @@ async function winAnimation() {
         console.log('Error: ', error);
     });
 
-
-    
-
-    console.log(winningSegmentNumber); // tallet som står på hjulet.
-
-
     // Da animationen allerede har fundet sted er det nødvendigt at tillægge nye spins til hjulet.
     theWheel.animation.spins += 6;
     theWheel.animation.duration = 8;
 
     theWheel.draw();  
-
 };
