@@ -59,19 +59,19 @@ app.use((req, res, next) => {
 // ### Mail Middleware router ##
 app.use(contactRouter.router);
 
-// ##########
+
 // Run when client connects
 io.on('connection', socket => {
 
   // Welcome current user
-  socket.emit('message', 'Velkommen til chatten. Skriv med alle online brugere!');
+  socket.emit('message', 'Welcome to The GameChat!');
 
   // Broadcast when a user connects
-  socket.broadcast.emit('message', 'En bruger har joinet chatten.');
+  socket.broadcast.emit('message', 'A user has joined the chat');
 
   // Runs when client disconnects
   socket.on('disconnect', () => {
-    io.emit('message', 'En bruger har forladt chatten.');
+    io.emit('message', 'A user has left the chat');
   });
 
   // Listen for chatMessage
