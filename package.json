@@ -4,7 +4,8 @@
   "description": "Spin the wheel application using Node",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "start:prod": "NODE_ENV=production nodemon app.js"
   },
   "keywords": [
