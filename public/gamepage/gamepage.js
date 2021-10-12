@@ -115,7 +115,8 @@ async function winAnimation() {
     })
     .then( response => response.json())
     .then( response => {
-        return response
+        // console.log(response);
+        return response;
 
     })
     .catch((error) => {
