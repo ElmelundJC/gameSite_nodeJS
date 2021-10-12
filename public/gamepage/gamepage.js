@@ -61,14 +61,14 @@ async function getScoreboard() {
         return response.json();
     })
     .then( data => {
-        console.log(data.data.user.name);
-        console.log(data.data.user.currentScore);
+        // console.log(data.data.user.name);
+        // console.log(data.data.user.currentScore);
         
         tableName.innerHTML = data.data.user.name;
         tableScore.innerHTML = data.data.user.currentScore;
 
         highestScore = data.data.user.maxScore;
-        console.log('Highest Score: ', highestScore);
+        // console.log('Highest Score: ', highestScore);
     })
     .catch((error) => {
         console.log('Error: ', error);
@@ -89,7 +89,7 @@ async function winAnimation() {
     let winningSegmentNumber = theWheel.getIndicatedSegmentNumber();
 
     let oldNumber = tableScore.innerText;
-    console.log(oldNumber);
+    // console.log(oldNumber);
 
     if (winningSegmentNumber === 3) {
         tableScore.innerText = 0;

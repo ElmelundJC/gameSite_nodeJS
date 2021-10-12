@@ -37,7 +37,7 @@ exports.updateMe = catchAsync (async (req, res, next) => {
     }
     // Tager 2 parameter -> Første er req.body, hvilket er det vi vil filtrere. De næste objekter er de objekter fra vores model vi gerne vil opdatere. Resten af de værdier fra vores model, vil blive sorteret fra således at disse ikke kan ændres.
     const filteredBody = filterObj(req.body, 'name', 'email', 'currentScore', 'maxScore');
-    console.log(req.body);
+    // console.log(req.body);
 
     // update user document
     const updatedUser = await User.findByIdAndUpdate(req.user.id, filteredBody, { 

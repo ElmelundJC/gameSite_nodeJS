@@ -52,7 +52,7 @@ app.use(express.static(`${__dirname}/public`));
 // Test middleware
 app.use((req, res, next) => {
   req.requestTime = new Date().toString();
-  console.log(req.cookies);
+  // console.log(req.cookies);
   next();
 });
 

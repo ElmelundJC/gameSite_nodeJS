@@ -13,7 +13,7 @@ async function getLeaderboard() {
         return response.json();
     })
     .then(data => {
-        console.log(data.data);       
+        // console.log(data.data);       
         
         for (const name in data.data.users) {
             if (Object.hasOwnProperty.call(data.data.users, name)) {
