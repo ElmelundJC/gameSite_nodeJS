@@ -9,10 +9,10 @@ const nodemailer = require("nodemailer");
 router.post("/api/contact", (req, res) => {
 
 // Til test :-)
-    //  console.log(req.body.name);
-    //  console.log(req.body.email);
-    //  console.log(req.body.subject);
-    //  console.log(req.body.message);
+     console.log(req.body.name);
+     console.log(req.body.email);
+     console.log(req.body.subject);
+     console.log(req.body.message);
     //  console.log(req.body);
     
 // 1 of 3 der skal via nodemailer createTransport, med type og evt. auth.
